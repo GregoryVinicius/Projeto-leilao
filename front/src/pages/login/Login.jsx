@@ -10,16 +10,16 @@ const Login = () =>{
     const [user, setUser] = useState({email: "", senha: ""});
     const navigate = useNavigate();
 
-    const handleChange = (input) =>{
+    const handChange = (input) =>{
         setUser({...user, [input.target.name]: input.target.value});
     }
 
     const login = () =>{
         //chamada para o back-end para verificar as credenciasi
-        if(user.email == "gregoryviniciuscla@gmail.com" && user.Password == "123"){
+        if(user.email == "gregoryviniciuscla@gmail.com" && user.senha == "123"){
             let token = "token do backend"
             localStorage.setItem("token", token);
-            localStorage.setItem("email", usuario.email);
+            localStorage.setItem("email", user.email);
             navigate("/");
         }else{
             alert("usuario ou senha incorretos");
@@ -29,9 +29,15 @@ const Login = () =>{
     return (
         <div>
             <Card title="Login" className="p-4" stuyle={{width: '400px'}}>
-                <InputText onChange={handleChange}name="email" id="email" className=""/>
-                <InputText onChange={handleChange} name="senha" id="senha" className="" />
-                <Button label="Fazer Login" />
+                <div className="flex flex-column gap-2">
+                    <label htmlFor="email">Email</label>
+                    <InputText onChange={handChange}name="email" id="email" type="email" aria-describedby="email-help"/>
+                </div>
+                <div className="flex flex-column gap-2">
+                    <label htmlFor="senha">Senha</label>
+                    <InputText onChange={handChange}name="senha" id="senha" type="senha" aria-describedby="senha-help"/>
+                </div>
+                <Button onClick={login} label="Fazer Login" />
                 <Button label="Criar conta" link onClick={() => window.open('../singin')} />
                 <Button label="Esqueceu a senha" link onClick={() => window.open('../reset-password', '_blank')} />
             </Card>

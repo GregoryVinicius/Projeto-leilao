@@ -1,11 +1,12 @@
 import React from "react";
 import "./Home.css";
 import { Button } from 'primereact/button';
+import Logout from "../../componnents/logout/Logout";
 
 const Home = () =>{
 
     return (
-        <div>
+        <><div>
             <a href="../login" target="_blank" rel="noopener noreferrer" className="p-button font-bold">
                 Login
             </a>
@@ -18,7 +19,7 @@ const Home = () =>{
             <a href="../forgot-password" target="_blank" rel="noopener noreferrer" className="p-button font-bold">
                 Esqueceu a senha
             </a>
-        </div>
+        </div><Logout /></>
     )
 }
 
