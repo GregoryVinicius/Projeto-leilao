@@ -36,6 +36,7 @@ const Login = () =>{
                 <div className="flex flex-column gap-2">
                     <label htmlFor="senha">Senha</label>
                     <InputText onChange={handChange}name="senha" id="senha" type="senha" aria-describedby="senha-help"/>
+                    {/* <Password value={value} onChange={(e) => setValue(e.target.value)} toggleMask /> tentar adicionar isso */}
                 </div>
                 <Button onClick={login} label="Fazer Login" />
                 <Button label="Criar conta" link onClick={() => window.open('../singin')} />
