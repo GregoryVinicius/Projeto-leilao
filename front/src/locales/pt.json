@@ -3,6 +3,8 @@
     "password": "Senha",
     "login":"Entrar",
     "createAcont":"Criar Conta",
-    "forgotPassword":"Esqueceu a senha",
-    "email": "E-mail"
+    "forgotPassword":"Esqueceu a Senha",
+    "email": "E-mail",
+    "singin": "Fazer Cadastro",
+    "cancel": "Cancelar"
 }

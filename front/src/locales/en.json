@@ -4,5 +4,7 @@
     "login": "login",
     "createAcont": "Create Acont",
     "forgotPassword": "Forgot Password",
-    "email":"E-mail"
+    "email":"E-mail",
+    "singin": "Sing In",
+    "cancel": "Cancel"
 }

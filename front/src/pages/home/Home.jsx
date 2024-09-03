@@ -29,7 +29,8 @@ const Home = () =>{
                     </Button>
                 </lang>
 
-            </div><Logout />
+            </div>
+            <Logout />
         </>
     )
 }

@@ -4,7 +4,7 @@ import { Card } from 'primereact/card';
 import { InputText } from 'primereact/inputtext';
 import { Password } from 'primereact/password';
 import { Button } from 'primereact/button';
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const Login = () =>{
@@ -19,7 +19,7 @@ const Login = () =>{
 
     const login = () =>{
         //chamada para o back-end para verificar as credenciasi
-        if(user.email == "gregoryviniciuscla@gmail.com" && user.senha == "123"){
+        if(user.email == "gregoryviniciuscla@gmail.com" && user.password == "123"){
             let token = "token do backend"
             localStorage.setItem("token", token);
             localStorage.setItem("email", user.email);
@@ -51,8 +51,7 @@ const Login = () =>{
                 </div>
                 <div className="flex flex-column gap-2">
                     <label htmlFor="senha">{t ('password')}</label>
-                    {/* <InputText onChange={handChange}name="senha" id="senha" type="senha" aria-describedby="senha-help"/> */}
-                    <Password onChange={handleCombinedChange} name="senha" id="senha" type="senha" aria-describedby="senha-help" value={value} toggleMask feedback={false} />
+                    <Password onChange={handleCombinedChange} name="password" id="password" type="password" aria-describedby="senha-help" value={value} toggleMask feedback={false} />
                 </div>
                 <Button onClick={login} label={t('login')} />
                 <Button label={t('createAcont')} link onClick={() => window.open('../singin')} />

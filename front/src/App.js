@@ -8,6 +8,7 @@ import DefaultLayout from './componnents/DefaultLayout';
 import SimpleLayout from './componnents/SimpleLayout';
 import Singin from './pages/singin/Singin';
 import PrivateRouter from './componnents/PrivateRouter';
+import Teste from './pages/teste/Teste';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path='/forgot-password' element={<SimpleLayout><ForgotPassword/></SimpleLayout>}/>
           <Route path='/singin' element={<SimpleLayout><Singin/></SimpleLayout>} />
           <Route path='/reset-password' element={<SimpleLayout><ResetPassword/></SimpleLayout>} />
+          <Route path='/teste' element={<Teste/>}/>
 
         </Routes>
       </BrowserRouter>
