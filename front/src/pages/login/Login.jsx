@@ -55,7 +55,7 @@ const Login = () =>{
                 </div>
                 <Button onClick={login} label={t('login')} />
                 <Button label={t('createAcont')} link onClick={() => window.open('../singin')} />
-                <Button label={t('forgotPassword')} link onClick={() => window.open('../reset-password', '_blank')} />
+                <Button label={t('forgotPassword')} link onClick={() => window.open('../forgot-password', '_blank')} />
                 <lang>
                     <Button onClick={() => changeLanguage('en')}>
                         English

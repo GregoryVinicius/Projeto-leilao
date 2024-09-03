@@ -6,5 +6,8 @@
     "forgotPassword": "Forgot Password",
     "email":"E-mail",
     "singin": "Sing In",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "resetPassword": "Reset Password",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm password"
 }

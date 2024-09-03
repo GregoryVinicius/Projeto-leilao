@@ -6,6 +6,7 @@ import { Button } from 'primereact/button';
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Divider } from 'primereact/divider';
+import { InputText } from "primereact/inputtext";
 
 const ResetPassword = () => {
     const [user, setUser] = useState({ email: "", senha: "" });
@@ -69,7 +70,7 @@ const ResetPassword = () => {
     };
 
     const navigateHome = () => {
-        navigate("/");
+        navigate("/login");
     };
 
     const header = <div className="font-bold mb-3">Escreva uma senha</div>;
@@ -90,12 +91,24 @@ const ResetPassword = () => {
     return (
         <Card title={t('resetPassword')}>
             <div className="flex flex-column gap-2">
-                <label htmlFor="senha">{t('password')}</label>
+                <label htmlFor="email">{t('email')}</label>
+                <InputText onChange={handleCombinedChange} name="email" id="email" type="email" aria-describedby="email-help" />
+            </div> 
+            <div className="flex flex-column gap-2">
+                <label htmlFor="codigo">Codigo</label>
+                <InputText onChange={handleCombinedChange} name="codigo" id="codigo" type="codigo" aria-describedby="codigo-help" />
+            </div> 
+            <div className="flex flex-column gap-2">
+                <label htmlFor="senha">{t('newPassword')}</label>
+                <Password onChange={handleCombinedChange} header={header} footer={footer} name="senha" id="senha" value={value} toggleMask />
+            </div>
+            <div className="flex flex-column gap-2">
+                <label htmlFor="senha">{t('confirmPassword')}</label>
                 <Password onChange={handleCombinedChange} header={header} footer={footer} name="senha" id="senha" value={value} toggleMask />
             </div>
             <div>
                 <Button onClick={navigateHome}>{t("cancel")}</Button>
-                <Button onClick={VerifyStrongPassword}>{t("singin")}</Button>
+                <Button onClick={VerifyStrongPassword}>{t("resetPassword")}</Button>
             </div>
             <div className="lang">
                 <Button onClick={() => changeLanguage('en')}>English</Button>

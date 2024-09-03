@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 import { Divider } from 'primereact/divider';
 
 const Singin = () =>{
-    const [user, setUser] = useState({ email: "", senha: "" });
+    const [user, setUser] = useState({nome: "", email: "", senha: "" });
     const [value, setValue] = useState('');
     const navigate = useNavigate();
     const { t, i18n } = useTranslation();
@@ -30,9 +30,10 @@ const Singin = () =>{
     );
 
     const register = () => {
-            localStorage.setItem("senha", user.senha);
-            localStorage.setItem("email", user.email);
-            navigate("/");
+        localStorage.setItem("nome", user.nome);
+        localStorage.setItem("senha", user.senha);
+        localStorage.setItem("email", user.email);
+        navigate("/");
     }
 
     let regex = /^(?=.*[@!#$%^&*()/\\])[@!#$%^&*()/\\a-zA-Z0-9]{6,20}$/; //Faz todas as verificações nescesarias lookaheads
@@ -69,6 +70,10 @@ const Singin = () =>{
 
     return (
         <Card title={t('singin')}>
+            <div className="flex flex-column gap-2">
+                <label htmlFor="nome">{t('email')}</label>
+                <InputText onChange={handChange} name="nome" id="nome" type="nome" aria-describedby="nome-help" />
+            </div> 
             <div className="flex flex-column gap-2">
                 <label htmlFor="email">{t('email')}</label>
                 <InputText onChange={handChange} name="email" id="email" type="email" aria-describedby="email-help" />

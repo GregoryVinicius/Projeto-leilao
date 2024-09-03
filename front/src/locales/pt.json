@@ -6,5 +6,8 @@
     "forgotPassword":"Esqueceu a Senha",
     "email": "E-mail",
     "singin": "Fazer Cadastro",
-    "cancel": "Cancelar"
+    "cancel": "Cancelar",
+    "resetPassword": "Trocar senha",
+    "newPassword": "Nova Senha",
+    "confirmPassword": "Confirmar Senha"
 }
