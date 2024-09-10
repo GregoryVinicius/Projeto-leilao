@@ -1,7 +1,7 @@
 import React from "react";
 import "./Home.css";
 import { Button } from 'primereact/button';
-import Logout from "../../componnents/logout/Logout";
+// import Logout from "../../componnents/logout/Logout";
 import { useTranslation } from "react-i18next";
 
 const Home = () =>{
@@ -30,7 +30,7 @@ const Home = () =>{
                 </lang>
 
             </div>
-            <Logout />
+            {/* <Logout /> */}
         </>
     )
 }

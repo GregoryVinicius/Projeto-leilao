@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Singin.css"
+import "./SignIn.css"
 import { Card } from 'primereact/card';
 import { InputText } from 'primereact/inputtext';
 import { Password } from 'primereact/password';
