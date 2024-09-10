@@ -1,65 +1,78 @@
-import React, { useState } from 'react';
-import './Teste.css'; // Importando o arquivo CSS
 
-function Teste() {
-    const [password, setPassword] = useState('');
-    const [isValid, setIsValid] = useState(false);
+import React, { useState, useEffect } from 'react';
+import { Button } from 'primereact/button';
+import { Carousel } from 'primereact/carousel';
+import { Tag } from 'primereact/tag';
+import { ProductService } from './service/ProductService';
 
-    const validatePassword = (password) => {
-        const minLength = password.length >= 6;
-        const hasUpperCase = /[A-Z]/.test(password);
-        const hasLowerCase = /[a-z]/.test(password);
-        const hasNumber = /\d/.test(password);
-        const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+export default function CircularDemo() {
+    const [products, setProducts] = useState([]);
+    const responsiveOptions = [
+        {
+            breakpoint: '1400px',
+            numVisible: 2,
+            numScroll: 1
+        },
+        {
+            breakpoint: '1199px',
+            numVisible: 3,
+            numScroll: 1
+        },
+        {
+            breakpoint: '767px',
+            numVisible: 2,
+            numScroll: 1
+        },
+        {
+            breakpoint: '575px',
+            numVisible: 1,
+            numScroll: 1
+        }
+    ];
 
-        return {
-            minLength,
-            hasUpperCase,
-            hasLowerCase,
-            hasNumber,
-            hasSpecialChar,
-            isValid: minLength && hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar,
-        };
+    const getSeverity = (product) => {
+        switch (product.inventoryStatus) {
+            case 'INSTOCK':
+                return 'success';
+
+            case 'LOWSTOCK':
+                return 'warning';
+
+            case 'OUTOFSTOCK':
+                return 'danger';
+
+            default:
+                return null;
+        }
     };
 
-    const handlePasswordChange = (event) => {
-        const newPassword = event.target.value;
-        const validationResults = validatePassword(newPassword);
-        setPassword(newPassword);
-        setIsValid(validationResults.isValid);
-    };
+    useEffect(() => {
+        ProductService.getProductsSmall().then((data) => setProducts(data.slice(0, 9)));
+    }, []);
 
-    const validationResults = validatePassword(password);
+    const productTemplate = (product) => {
+        return (
+            <div className="border-1 surface-border border-round m-2 text-center py-5 px-3">
+                <div className="mb-3">
+                    <img src={`https://primefaces.org/cdn/primereact/images/product/${product.image}`} alt={product.name} className="w-6 shadow-2" />
+                </div>
+                <div>
+                    <h4 className="mb-1">{product.name}</h4>
+                    <h6 className="mt-0 mb-3">${product.price}</h6>
+                    <Tag value={product.inventoryStatus} severity={getSeverity(product)}></Tag>
+                    <div className="mt-5 flex flex-wrap gap-2 justify-content-center">
+                        <Button icon="pi pi-search" className="p-button p-button-rounded" />
+                        <Button icon="pi pi-star-fill" className="p-button-success p-button-rounded" />
+                    </div>
+                </div>
+            </div>
+        );
+    };
 
     return (
-        <div>
-            <input
-                type="password"
-                value={password}
-                onChange={handlePasswordChange}
-                placeholder="Enter your password"
-            />
-            <p>Password requirements:</p>
-            <ul>
-                <li className={validationResults.minLength ? 'valid' : 'invalid'}>
-                    Minimum 6 characters
-                </li>
-                <li className={validationResults.hasUpperCase ? 'valid' : 'invalid'}>
-                    At least 1 uppercase letter
-                </li>
-                <li className={validationResults.hasLowerCase ? 'valid' : 'invalid'}>
-                    At least 1 lowercase letter
-                </li>
-                <li className={validationResults.hasNumber ? 'valid' : 'invalid'}>
-                    At least 1 number
-                </li>
-                <li className={validationResults.hasSpecialChar ? 'valid' : 'invalid'}>
-                    At least 1 special character
-                </li>
-            </ul>
-            {isValid ? <p className="valid-message">Password is valid</p> : <p className="invalid-message">Password is not valid</p>}
+        <div className="card">
+            <Carousel value={products} numVisible={3} numScroll={3} responsiveOptions={responsiveOptions} className="custom-carousel" circular
+                autoplayInterval={3000} itemTemplate={productTemplate} />
         </div>
-    );
+    )
 }
-
-export default Teste;

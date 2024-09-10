@@ -6,6 +6,8 @@ import { Toast } from 'primereact/toast';
 import { useTranslation } from "react-i18next";
 import { useNavigate } from 'react-router-dom';
 import { handleLogout } from '../logout/handleLogout';
+import { Image } from 'primereact/image';
+
 
 const Header = () => {
     const navigate = useNavigate();
@@ -23,9 +25,15 @@ const Header = () => {
 
     return (
         <>
-            <Toast ref={toast}></Toast>
-            <Menu model={items} popup ref={menu} id="popup_menu_left" />
-            <Button icon="pi pi-bars" className="mr-2" onClick={(event) => menu.current.toggle(event)} aria-controls="popup_menu" aria-haspopup />
+            <div>
+                <Image src='/img/elden-ring-logo.png' alt='Imagen logo' width='250'/>
+                <h1>EldenMarket</h1>
+            </div>
+            <div>
+                <Toast ref={toast}></Toast>
+                <Menu model={items} popup ref={menu} id="popup_menu_left" />
+                <Button icon="pi pi-user" className="mr-2" onClick={(event) => menu.current.toggle(event)} aria-controls="popup_menu" aria-haspopup />
+            </div>
         </>
     )
 }

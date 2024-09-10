@@ -22,6 +22,7 @@ function App() {
           <Route path='/singin' element={<SimpleLayout><SignIn/></SimpleLayout>} />
           <Route path='/reset-password' element={<SimpleLayout><ResetPassword/></SimpleLayout>} />
           <Route path='/profile' element={<Profile/>}/>
+          <Route path='/teste' element={<Teste/>}/>
 
         </Routes>
       </BrowserRouter>
