@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.leilao.back.model.Person;
 import com.leilao.back.service.PersonService;
 
+import jakarta.validation.Valid;
 import jakarta.websocket.server.PathParam;
 
 @RestController
@@ -26,12 +27,12 @@ public class PersonController {
     private PersonService personService;
 
     @PostMapping
-    public Person create(@RequestBody Person person) {
+    public Person create(@Valid @RequestBody Person person) {
         return personService.create(person);
     }
 
     @PutMapping
-    public Person update(@RequestBody Person person) {
+    public Person update(@Valid @RequestBody Person person) {
         return personService.create(person);
     }
 
