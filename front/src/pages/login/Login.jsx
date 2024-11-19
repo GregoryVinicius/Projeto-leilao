@@ -6,25 +6,29 @@ import { Password } from 'primereact/password';
 import { Button } from 'primereact/button';
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import PersonService from "../../services/PersonService";
 
 const Login = () =>{
     const [user, setUser] = useState({email: "", senha: ""});
     const [value, setValue] = useState('');
     const navigate = useNavigate();
     const {t, i18n} = useTranslation();
+    const personService = new PersonService();
 
     const handChange = (input) =>{
         setUser({...user, [input.target.name]: input.target.value});
     }
 
-    const login = () =>{
+    const login = async () =>{
         //chamada para o back-end para verificar as credenciasi
-        if(user.email == "gregoryviniciuscla@gmail.com" && user.password == "123"){
-            let token = "token do backend"
+        try{
+            const response = await personService.login(user);
+            let token = response.token;
             localStorage.setItem("token", token);
             localStorage.setItem("email", user.email);
             navigate("/");
-        }else{
+        }catch(err){
+            console.log(err);
             alert("usuario ou senha incorretos");
         }
     }

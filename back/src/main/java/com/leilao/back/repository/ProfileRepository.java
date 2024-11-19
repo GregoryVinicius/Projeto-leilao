@@ -1,9 +1,10 @@
-package com.leilao.back.repository;
+package com.leilao.backend.repository;
 
-import com.leilao.back.model.Profile;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.leilao.backend.model.Profile;
 
-public interface ProfileRepository extends JpaRepository<Profile, Long>{
-    
+public interface ProfileRepository extends 
+        JpaRepository<Profile, Long>{
+
 }

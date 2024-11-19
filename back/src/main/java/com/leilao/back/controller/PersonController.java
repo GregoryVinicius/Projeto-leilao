@@ -1,30 +1,51 @@
-package com.leilao.back.controller;
-
-import java.util.List;
+package com.leilao.backend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.leilao.back.model.Person;
-import com.leilao.back.service.PersonService;
+import com.leilao.backend.model.Person;
+import com.leilao.backend.model.PersonAuthRequestDTO;
+import com.leilao.backend.model.PersonAuthResponseDTO;
+import com.leilao.backend.security.JwtService;
+import com.leilao.backend.service.PersonService;
 
 import jakarta.validation.Valid;
-import jakarta.websocket.server.PathParam;
 
 @RestController
-@RequestMapping("/api/Person")
+@RequestMapping("/api/person")
+@CrossOrigin
 public class PersonController {
 
     @Autowired
     private PersonService personService;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private JwtService jwtService;
+
+    @PostMapping("/login")
+    public PersonAuthResponseDTO authenticateUser(@RequestBody PersonAuthRequestDTO authRequest) {
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        authRequest.getEmail(), authRequest.getPassword()));
+        return new PersonAuthResponseDTO(
+                authRequest.getEmail(), jwtService.generateToken(authentication.getName()));
+    }
+
+    @PostMapping("/password-code-request")
+    public String passwordCodeRequest(@RequestBody PersonAuthRequestDTO person) {
+        return personService.passwordCodeRequest(person);
+    }
 
     @PostMapping
     public Person create(@Valid @RequestBody Person person) {
@@ -34,16 +55,5 @@ public class PersonController {
     @PutMapping
     public Person update(@Valid @RequestBody Person person) {
         return personService.create(person);
-    }
-
-    // localhost:8080/api/Person/10
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Long id) {
-        personService.delete(id);
-    }
-
-    @GetMapping
-    public List<Person> listAll() {
-        return personService.listAll();
     }
 }

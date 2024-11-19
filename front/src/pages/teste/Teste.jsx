@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from 'primereact/button';
 import { Carousel } from 'primereact/carousel';
 import { Tag } from 'primereact/tag';
-import { ProductService } from './service/ProductService';
+// import { ProductService } from './service/ProductService';
 
 export default function CircularDemo() {
     const [products, setProducts] = useState([]);
@@ -46,9 +46,9 @@ export default function CircularDemo() {
         }
     };
 
-    useEffect(() => {
-        ProductService.getProductsSmall().then((data) => setProducts(data.slice(0, 9)));
-    }, []);
+    // useEffect(() => {
+    //     ProductService.getProductsSmall().then((data) => setProducts(data.slice(0, 9)));
+    // }, []);
 
     const productTemplate = (product) => {
         return (

@@ -1,4 +1,4 @@
-package com.leilao.back.controller;
+package com.leilao.backend.controller;
 
 import java.util.List;
 
@@ -8,13 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.leilao.back.model.Profile;
-import com.leilao.back.service.ProfileService;
+import com.leilao.backend.model.Profile;
+import com.leilao.backend.service.ProfileService;
 
 import jakarta.websocket.server.PathParam;
 
@@ -35,14 +34,22 @@ public class ProfileController {
         return profileService.create(profile);
     }
 
+    @GetMapping
+    public List<Profile> listAll() {
+        return profileService.listAll();
+    }
+
     // localhost:8080/api/profile/10
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Long id) {
         profileService.delete(id);
     }
 
-    @GetMapping
-    public List<Profile> listAll() {
-        return profileService.listAll();
+    // localhost:8080/api/profile?name=jose&age=2
+    @GetMapping("/find")
+    public String find(@PathParam("name") String name,
+            @PathParam("age") Integer age) {    
+        System.out.println(name + " " + age);
+        return name + " " + age;
     }
 }

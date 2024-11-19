@@ -1,4 +1,4 @@
-package com.leilao.back.model;
+package com.leilao.backend.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
