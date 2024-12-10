@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Login.css";
+import styles from "./Login.module.css";
 import { Card } from 'primereact/card';
 import { InputText } from 'primereact/inputtext';
 import { Password } from 'primereact/password';
@@ -7,6 +7,7 @@ import { Button } from 'primereact/button';
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import PersonService from "../../services/PersonService";
+
 
 const Login = () =>{
     const [user, setUser] = useState({email: "", senha: ""});
@@ -51,11 +52,11 @@ const Login = () =>{
             <Card title={t('login')} className="p-4" stuyle={{width: '400px'}}>
                 <div className="flex flex-column gap-2">
                     <label htmlFor="email">{t('email')}</label>
-                    <InputText onChange={handChange}name="email" id="email" type="email" aria-describedby="email-help"/>
+                    <InputText className={styles["input-box"]} onChange={handChange}name="email" id="email" type="email" aria-describedby="email-help"/>
                 </div>
                 <div className="flex flex-column gap-2">
                     <label htmlFor="senha">{t ('password')}</label>
-                    <Password onChange={handleCombinedChange} name="password" id="password" type="password" aria-describedby="senha-help" value={value} toggleMask feedback={false} />
+                    <Password className={styles["input-box"]} onChange={handleCombinedChange} name="password" id="password" type="password" aria-describedby="senha-help" value={value} toggleMask feedback={false} />
                 </div>
                 <Button onClick={login} label={t('login')} />
                 <Button label={t('createAcont')} link onClick={() => window.open('../singin')} />

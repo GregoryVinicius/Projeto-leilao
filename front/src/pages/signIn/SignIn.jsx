@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./SignIn.css"
+import styles from"./SignIn.module.css"
 import { Card } from 'primereact/card';
 import { InputText } from 'primereact/inputtext';
 import { Password } from 'primereact/password';
@@ -36,8 +36,8 @@ const Singin = () =>{
         navigate("/");
     }
 
-    let regex = /^(?=.*[@!#$%^&*()/\\])[@!#$%^&*()/\\a-zA-Z0-9]{6,20}$/; //Faz todas as verificações nescesarias lookaheads
-    
+    let regex = /^(?=.*[@!#$%^&*()/\\])[@!#$%^&*()/\\a-zA-Z0-9]{6,20}$/; //verifica todos os tipos de caracteres
+
     const VerifyStrongPassword = () => {
         localStorage.setItem("senha", user.senha);
         const senha = localStorage.getItem("senha")
@@ -71,12 +71,12 @@ const Singin = () =>{
     return (
         <Card title={t('singin')}>
             <div className="flex flex-column gap-2">
-                <label htmlFor="nome">{t('email')}</label>
-                <InputText onChange={handChange} name="nome" id="nome" type="nome" aria-describedby="nome-help" />
+                <label htmlFor="nome">{t('name')}</label>
+                <InputText className={styles["input-box"]} onChange={handChange} name="nome" id="nome" type="nome" aria-describedby="nome-help" />
             </div> 
             <div className="flex flex-column gap-2">
                 <label htmlFor="email">{t('email')}</label>
-                <InputText onChange={handChange} name="email" id="email" type="email" aria-describedby="email-help" />
+                <InputText className={styles["input-box"]} onChange={handChange} name="email" id="email" type="email" aria-describedby="email-help" />
             </div>
             <div className="flex flex-column gap-2">
                 <label htmlFor="senha">{t('password')}</label>
